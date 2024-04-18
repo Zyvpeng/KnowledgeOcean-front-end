@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.3.5/dist/web3.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>Title</title>
+
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    </head>
+
+    <style>
+        body {
+            background: url(https://www.global-good.cn/static/move/applogin/images/gd_login_bg.png) no-repeat center;
+            background-size: cover;
+            padding: 30vh;
+            position: relative;
+            padding-top: 0vh;
+            left: -10rem;
+            top: -2rem;
+        }
+        
+        .left-box {
+            position: relative;
+            top: 10rem;
+            left: 12rem;
+            color: #16202C;
+            font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+        }
+        
+        .left-box>p.h1 {
+            font-size: 28px;
+            margin-top: 7vh;
+        }
+        
+        .left-box>p.h2 {
+            text-transform: uppercase;
+            font-size: 64px;
+            margin: 50px 0 100px 0;
+            font-weight: bold;
+        }
+        
+        #main {
+            position: relative;
+            bottom: 200px;
+            left: 60rem;
+        }
+        /* From uiverse.io by @alexruix */
+        
+        .group {
+            display: flex;
+            line-height: 28px;
+            align-items: center;
+            position: relative;
+        }
+        
+        .input {
+            width: 15rem;
+            height: 35px;
+            line-height: 28px;
+            padding: 0 1rem;
+            padding-left: 2.5rem;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            outline: none;
+            background-color: #f3f3f4;
+            color: #0d0c22;
+            transition: .3s ease;
+            position: absolute;
+            top: 140px;
+            left: 20px;
+        }
+        
+        .input::placeholder {
+            color: #9e9ea7;
+            transform: translateX(-20px);
+        }
+        
+        .input:focus,
+        input:hover {
+            outline: none;
+            border-color: rgba(234, 76, 137, 0.4);
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+        }
+        
+        .icon {
+            position: absolute;
+            left: 1rem;
+            fill: #9e9ea7;
+            width: 1rem;
+            height: 1rem;
+        }
+        
+        .topic {
+            color: #856ac5;
+            font-size: 24px;
+            text-align: center;
+            width: 215px;
+            height: 60px;
+            border-radius: 14px;
+            margin-left: 40px;
+            margin-top: -20px;
+            position: relative;
+            left: 8rpx;
+            top: 28px;
+            bottom: 0rpx;
+            font-weight: 700;
+        }
+        /* From uiverse.io */
+        
+        .btn {
+            position: relative;
+            font-size: 15px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.7em 2.2em;
+            display: inline-block;
+            border-radius: 6em;
+            transition: all .2s;
+            border: none;
+            font-family: inherit;
+            font-weight: 500;
+            color: black;
+            background-color: white;
+            top: 280px;
+            left: 90px;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn::after {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            border-radius: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all .4s;
+        }
+        
+        .btn::after {
+            background-color: #fff;
+        }
+        
+        .btn:hover::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+        /* From uiverse.io by @SharpTH */
+        
+        .card {
+            position: relative;
+            left: -10px;
+            cursor: pointer;
+            top: -220px;
+            width: 320px;
+            height: 454px;
+            background: rgba(255, 255, 255, 0.64);
+            border-radius: 5px;
+            border: 1px solid rgba(0, 0, 255, .2);
+            transition: all .2s;
+            box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+        }
+        
+        .card:hover {
+            box-shadow: -12px 12px 2px -1px rgba(0, 0, 255, .2);
+        }
+        
+        .btn_ {
+            width: 120px;
+            height: 35px;
+            border-radius: 5px;
+            border: none;
+            transition: all 0.5s ease-in-out;
+            font-size: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            background: #040f16;
+            color: #f5f5f5;
+            position: absolute;
+            top: 80px;
+            left: 40px;
+        }
+        
+        .btn_:hover {
+            box-shadow: 0 0 20px 0px #2e2e2e3a;
+        }
+        
+        .btn_ .icon {
+            position: absolute;
+            height: 40px;
+            width: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s;
+        }
+        
+        .btn_ .text {
+            transform: translateX(55px);
+            font-size: 10px;
+        }
+        
+        .btn_:hover .icon {
+            width: 155px;
+        }
+        
+        .btn_:hover .text {
+            width: 150px;
+            transition: all 0.5s;
+            opacity: 0;
+        }
+        
+        .btn_:focus {
+            outline: none;
+        }
+        
+        .btn_:active .icon {
+            transform: scale(0.80);
+        }
+    </style>
+    <style>
+        /* From uiverse.io */
+        
+        .cntr {
+            position: relative;
+            top: 300px;
+            left: 90px;
+        }
+        
+        .cbx {
+            position: relative;
+            top: -25px;
+            left: -40px;
+            width: 27px;
+            height: 27px;
+            border: 1px solid #c8ccd4;
+            border-radius: 3px;
+            vertical-align: middle;
+            transition: background 0.1s ease;
+            cursor: pointer;
+            display: block;
+        }
+        
+        .cbx:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 8px;
+            width: 7px;
+            height: 14px;
+            opacity: 0;
+            transform: rotate(45deg) scale(0);
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            transition: all 0.3s ease;
+            transition-delay: 0.15s;
+        }
+        
+        .lbl {
+            margin-left: 5px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        
+        #cbx:checked~.cbx {
+            border-color: transparent;
+            background: #6871f1;
+            animation: jelly 0.6s ease;
+        }
+        
+        #cbx:checked~.cbx:after {
+            opacity: 1;
+            transform: rotate(45deg) scale(1);
+        }
+        
+        .cntr {
+            position: relative;
+        }
+        
+        @keyframes jelly {
+            from {
+                transform: scale(1, 1);
+            }
+            30% {
+                transform: scale(1.25, 0.75);
+            }
+            40% {
+                transform: scale(0.75, 1.25);
+            }
+            50% {
+                transform: scale(1.15, 0.85);
+            }
+            65% {
+                transform: scale(0.95, 1.05);
+            }
+            75% {
+                transform: scale(1.05, 0.95);
+            }
+            to {
+                transform: scale(1, 1);
+            }
+        }
+        
+        .hidden-xs-up {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="height: 27.5rem;">
+        <div class="left-box animate__animated animate__backInLeft">
+            <p class="h1 animate__fadeInLeft">欢迎使用</p>
+            <p class="h2 animate__fadeInLeft">welcome to</p>
+            <p class="h3 animate__fadeInLeft" style="font-size: 38px;">
+                IPFS-文件上传功能 <span style="color: rgb(39, 110, 240)">&gt;&gt;</span>
+            </p>
+        </div>
+
+
+        <div id="main" class="card animate__animated animate__backInUp">
+            <div class="header frame">
+
+                <h2 class="topic">IPFS文件上传</h2>
+
+
+
+            </div>
+
+            <div class="ground frame">
+
+                <div class="add-box">
+
+                    <button class="btn_ select">
+                        <span class="icon">
+                            <svg viewBox="0 0 175 80" width="40" height="40">
+                                <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                                <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                                <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            </svg>
+                        </span>
+                        <span class="text">FILE</span>
+                        <input type="file" class="add" style="opacity:0;">
+                    </button>
+
+
+                </div>
+
+                <div class="Cid">
+                    <div class="group" style="transform: translateY(-50px);">
+                        <input placeholder="新Cid值:" type="search" class="input write hash-link" id="hash_num">
+                    </div>
+                    <div class="group">
+                        <input placeholder="书名" type="search" class="input" id="text">
+                    </div>
+                    <div class="group">
+                        <input placeholder="标签" type="search" class="input" id="text2" style="transform:translateY(50px);">
+                    </div>
+                    <div class="group">
+                        <input placeholder="类型：书籍/视频/图片..." type="search" class="input" id="text3" style="transform:translateY(100px);">
+                    </div>
+                    <div class="cntr">
+                        <input checked="" type="checkbox" id="cbx" class="hidden-xs-up">加密
+                        <label for="cbx" class="cbx"></label>
+                    </div>
+                    <div class="update">
+                        <button class="btn" onclick="updata()"> 上传
+                        </button>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <script>
+        var id
+        var name
+        var cid
+
+
+        id = document.getElementById("text2").value
+        console.log(id);
+        name = document.getElementById("text").value
+        console.log(name);
+        cid = document.getElementById("hash_num").value
+        console.log(cid);
+        var text = document.getElementById("text3").value
+        var check = document.getElementById("cbx").checked
+
+
+        function updata() {
+            $.ajax({
+                url: '',
+                data: {
+                    name: name,
+                    id: id,
+                    cid: cid,
+                    text: text,
+                    if_key: check
+                },
+                type: 'POST',
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data)
+                },
+                error: function() {
+                    console.log('出错了')
+                },
+                headers: {
+
+                }
+            })
+        }
+    </script>
+    <!--
+    <script>
+        async function login() {
+            if (typeof window.ethereum !== 'undefined') {
+                let addr = await ethereum.request({
+                    method: 'eth_requestAccounts'
+                }); //授权连接钱包
+                document.getElementById("login_info").innerText = 'metamask登录信息:' + addr[0];
+                console.log('用户钱包地址:', addr[0]);
+
+                var accounts = await web3.eth.getAccounts();
+                var myAccount = accounts[0];
+                var balance = await web3.eth.getBalance(myAccount);
+                document.getElementById("balance").innerText = 'metamask账户代币:' + balance / 1000000000000000000
+            } else {
+                document.getElementById("login_info").innerText = 'metamask登录信息:' + '未安装钱包插件！'
+                document.getElementById("balance").innerText = ''
+                console.log('未安装钱包插件！');
+            }
+        }
+        login();
+    </script>
+    <script>
+        const web3 = new Web3(window.ethereum);
+        // const  web3 = new Web3(new Web3.providers
+        //     .HttpProvider("http://localhost:8545"));
+
+
+
+        const abi = [{
+            "inputs": [{
+                "internalType": "string",
+                "name": "num",
+                "type": "string"
+            }],
+            "name": "store",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }, {
+            "inputs": [],
+            "name": "retrieve",
+            "outputs": [{
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }],
+            "stateMutability": "view",
+            "type": "function"
+        }]
+
+        const add = "0x7D88EFa544446f44a53D799751e341905fE6B44d"
+        // const  add = "0x14479ef098ecc8d99cef2c5fa79f22f2e5058ad2"
+        const contract = new web3.eth.Contract(abi, add)
+        //console.log(contract)
+    </script>
+    <script>
+        function get() {
+            var h = null;
+            contract.methods.retrieve().call(function (err, ret) {
+
+                document.getElementById("hash").innerText = ret;
+
+                hashLinkDOM.href = "https://ipfs.io/ipfs/" + ret;
+                hashLinkDOM.innerHTML = "文件哈希值为：" + ret;
+            })
+
+        }
+    </script>
+    <script>
+        function get_version() {
+            document.getElementById("version_web").innerText = web3.version
+        }
+    </script>
+
+
+    <script>
+        function update() {
+            console.log(document.getElementById("hash_num").value)
+            contract.methods.store(document.getElementById("hash_num").value).send({
+                from: '0x14479eF098EcC8D99cEF2C5Fa79F22f2e5058AD2'
+            }, function (error, transactionHash) {
+                console.log(error, transactionHash)
+            });
+        }
+    </script>
+
+
+    引入ipfs依赖 -->
+    <script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
+    <script type="text/javascript">
+        //DOM
+        let addDOM = document.getElementsByClassName('add-box')[0];
+        let inputAddDOM = document.getElementsByClassName('add')[0];
+        let hashLinkDOM = document.getElementsByClassName('hash-link')[0];
+        let ipfsInfoDOM = document.getElementsByClassName('ipfs-info')[0];
+        let statusDOM = document.getElementsByClassName('status')[0];
+        let idDOM = document.getElementsByClassName('id')[0];
+        let agentVersionDOM = document.getElementsByClassName('agentVersion')[0];
+
+        (async function() {
+            // 连接ipfs 一定要注意这里是Ipfs 不是IPFS
+            let ipfs = await window.Ipfs.create()
+            getIpfsNodeInfo();
+
+            // 获取节点信息
+            async function getIpfsNodeInfo() {
+                try {
+                    const {
+                        id,
+                        agentVersion
+                    } = await ipfs.id();
+                    statusDOM.innerHTML = 'Ipfs连接情况:已经连接到 IPFS';
+                    idDOM.innerHTML = 'Ipfs节点ID: ' + id;
+                    agentVersionDOM.innerHTML = 'Ipfs:Agent version: ' + agentVersion;
+                } catch (err) {
+                    // Set error status text.
+                    statusDOM.innerHTML = `报错: ${err}`;
+                }
+                ipfsInfoDOM.style.display = 'block';
+            }
+
+            // 上传文件操作
+            inputAddDOM.onchange = (event) => {
+                // 获得上传的文件
+                let file = event.target.files[0]
+
+                // 执行上传函数
+                saveToIpfs(file).then(hashCode => {
+                    /*
+                     * 上传后的文件连接可以为
+                     * https://ipfs.io/ipfs/+hashCode
+                     * 也可以为你的服务器的上传地址
+                     */
+                    hashLinkDOM.href = "https://ipfs.io/ipfs/" + hashCode;
+                    hashLinkDOM.innerHTML = "文件哈希值为：" + hashCode;
+                    document.getElementById("hash_num").value = hashCode;
+                })
+            }
+
+            // 上传文件到ipfs的方法
+            async function saveToIpfs(file) {
+                try {
+                    const added = await ipfs.add(file, {
+                        progress: (prog) => console.log(`received: ${prog}`),
+                    });
+
+                    // 获取上传文件hash值
+                    let added_file_hash = added.cid.toString();
+
+                    // 返回hash值
+                    return Promise.resolve(added_file_hash)
+
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+
+        })()
+    </script>
+
+
+</body>
+
+</html>
